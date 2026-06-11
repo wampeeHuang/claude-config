@@ -1,0 +1,15 @@
+# Secrets — NEVER commit
+settings.json
+config.json
+.env
+*.token
+credentials.json
+secrets.json
+
+# Runtime
+_runtime/
+cache/
+sessions/
+telemetry/
+history.jsonl
+.caveman-active
