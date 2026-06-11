@@ -99,3 +99,12 @@ GitHub 真相源: 3 个 repo 覆盖全部配置。
 崩溃恢复: `git clone` 3 个 repo 到对应路径即完成。settings.json 含 API key 不进仓库，需手动恢复。
 
 改完规则或新增 skill/tool 后 push 到对应 repo。settings.json 变更手动同步到本地备份。
+
+# 技能
+
+| 技能 | 触发 | 用途 |
+|------|------|------|
+| `jinhuamao_wechat-article-writer` | 进化猫长文、公众号写作 | 五阶段互动写作助手（溯源→定向→校准→确认→执行） |
+| `SKILL_进化猫风格创作` | 进化猫风格参考 | 进化猫写作风格指南（467行） |
+
+技能文件在 `.claude/skills/` 下，自动发现。
