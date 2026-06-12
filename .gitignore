@@ -1,0 +1,33 @@
+# Secrets
+settings.json
+settings.local.json
+settings.json.bak
+config.json
+.env
+
+# Runtime data
+_runtime/
+cache/
+history.jsonl
+sessions/
+session-env/
+shell-snapshots/
+paste-cache/
+file-history/
+
+# Temporary
+plans/
+projects/
+dashboard/
+
+# Backups (large)
+backups/
+
+# Skills (own git repos)
+skills/
+
+# Plugins (own git repos)
+plugins/
+
+# OS
+Thumbs.db
