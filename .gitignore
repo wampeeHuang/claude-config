@@ -23,8 +23,6 @@ dashboard/
 # Backups (large)
 backups/
 
-# Skills (own git repos)
-skills/
 
 # Plugins (own git repos)
 plugins/
