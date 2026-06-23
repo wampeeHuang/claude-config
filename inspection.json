@@ -1,0 +1,42 @@
+{
+  "$schema": "urn:inspector:inspection:v1",
+  "project": "claude",
+  "bone": true,
+  "updated": "2026-06-22",
+  "checks": [
+    {
+      "id": "claude_md_exists",
+      "label": "CLAUDE.md 存在",
+      "what": "宪法文件 CLAUDE.md 存在且 > 50 字节",
+      "category": "B",
+      "schedule": "weekly",
+      "severity": "error",
+      "declarative": "file_exists",
+      "spec": { "path": "CLAUDE.md", "min_size_bytes": 50 }
+    },
+    {
+      "id": "settings_json_valid",
+      "label": "settings.json 有效",
+      "what": "Claude Code 配置文件是合法 JSON",
+      "category": "B",
+      "schedule": "weekly",
+      "severity": "warn",
+      "declarative": "shell",
+      "spec": {
+        "command": "node -e \"try{require('./settings.json');console.log('OK')}catch(e){console.log('INVALID: '+e.message)}\"",
+        "timeout_sec": 5,
+        "expect_exit_code": 0
+      }
+    },
+    {
+      "id": "memory_index_exists",
+      "label": "MEMORY.md 索引存在",
+      "what": "跨会话记忆索引文件存在",
+      "category": "B",
+      "schedule": "weekly",
+      "severity": "warn",
+      "declarative": "file_exists",
+      "spec": { "path": "projects/C--Users-Administrator/memory/MEMORY.md", "min_size_bytes": 10 }
+    }
+  ]
+}
