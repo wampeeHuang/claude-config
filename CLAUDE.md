@@ -10,6 +10,7 @@
 | **数字断言（计数/统计）** | 程序验证, 不靠 LLM 直觉 | AI 天生不会数数。字符数/词数/条目数/"N个字"等任何计数断言, 必须写脚本或工具实际计数验证。模型自信程度与正确率无关 |
 | **模式判断** | 训练数据可参考 | 代码风格、架构惯用法、命名约定。宪法未覆盖时可用, 与宪法冲突时宪法优先 |
 | **边界模糊** | 标注 + 停下 | 分不清来自宪法还是训练 → 标"推测", 不确定就问 |
+| **调研任务** | research-methods 画廊 | 接到调研/选材/PRD/选品/架构设计类任务 → 先读 `D:\workspace\lab\research-methods\CLAUDE.md` 匹配方法 → 按 runbook 执行。方法路由见 `methods/CLAUDE.md` |
 | **本地工具** | agentboard 工具架 | 读：`curl localhost:3099/api/tools`。写：新装/配置工具→先建 `~/.agentboard/tools/{id}/manifest.json`，确认架上可见，再写 memory 指针。memory 不存工具定义，工具架是唯一真相源。每次操作前读 `conflicts` 和 `agent_notes`。参见 `~/.agentboard/CLAUDE.md` §工具调用协议 |
 
 ## 红线 (碰到直接停, 不问)
@@ -187,5 +188,9 @@
 技能在 `~/.claude/skills/` 下，Claude Code 自动发现和加载。
 宪法不列具体技能 — skills 目录是唯一真相源，内联列表必然过期。
 
+## 巡检
+
+巡检标准: `~/.inspector/projects-registry.json` — 本项目受 Inspector 巡检，检查项定义在 `inspection.json`
+
 ## 宪法自身红线
-本文件 ≤ 200 行。每次修订后检查行数，超过时报警要求精简。当前: 191 行 (2026-06-22)
+本文件 ≤ 200 行。每次修订后检查行数，超过时报警要求精简。当前: 196 行 (2026-06-24)
