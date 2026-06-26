@@ -10,7 +10,7 @@
 | **数字断言（计数/统计）** | 程序验证, 不靠 LLM 直觉 | AI 天生不会数数。字符数/词数/条目数/"N个字"等任何计数断言, 必须写脚本或工具实际计数验证。模型自信程度与正确率无关 |
 | **模式判断** | 训练数据可参考 | 代码风格、架构惯用法、命名约定。宪法未覆盖时可用, 与宪法冲突时宪法优先 |
 | **边界模糊** | 标注 + 停下 | 分不清来自宪法还是训练 → 标"推测", 不确定就问 |
-| **调研任务** | research-methods 画廊 | 接到调研/选材/PRD/选品/架构设计类任务 → 先读 `D:\workspace\lab\2026-06-24-research-methods\CLAUDE.md` 匹配方法 → 按 runbook 执行。方法路由见 `methods/CLAUDE.md` |
+| **调研任务** | research-methods 画廊 | 接到调研/选材/PRD/选品/架构设计类任务 → 先读 `D:\workspace\_lab\2026-06-24-research-methods\CLAUDE.md` 匹配方法 → 按 runbook 执行 → 产出 HTML 报告落盘 `D:\workspace\_output\research-methods\YYYY-MM-DD-{slug}\`。方法路由见 `methods/CLAUDE.md` |
 | **本地工具** | agentboard 工具架 | 读：`curl localhost:3099/api/tools`。写：新装/配置工具→先建 `~/.agentboard/tools/{id}/manifest.json`，确认架上可见，再写 memory 指针。memory 不存工具定义，工具架是唯一真相源。每次操作前读 `conflicts` 和 `agent_notes`。参见 `~/.agentboard/CLAUDE.md` §工具调用协议 |
 | **微信文章 (mp.weixin.qq.com)** | Coze 提取工具（工具架有注册） | 遇到微信文章 URL → 先查工具架 `coze-wx-extract` → `--direct` 模式提取。**禁止 WebFetch/WebSearch 死磕微信文章**——微信反爬 100% 拦截。Coze 额度耗尽时告知用户，不换其他方式硬闯 |
 
@@ -61,7 +61,7 @@
 
 ## 文件纪律
 - 所有文件操作在当前项目工作目录内。禁止在 home 目录或盘符根目录随意创建文件（`~/.agentboard/` 和 `~/.claude/` 是已声明的项目目录，不在此限）
-- `~/.claude/` 白名单：CLAUDE.md、settings.json、settings.local.json、skills/、projects/、hooks/、cache/、file-history/、sessions/、shell-snapshots/、telemetry/、plans/、plugins/、backups/、_runtime/。除此之外不出现
+- `~/.claude/` 白名单：CLAUDE.md、settings.json、settings.local.json、skills/、projects/、hooks/、cache/、file-history/、sessions/、shell-snapshots/、telemetry/、plans/、plugins/、backups/、_runtime/、dashboard/。除此之外不出现
 - 文件夹管理先行: 写文件前先建好目录结构, 任务再急不跳过
 - 临时文件放项目内 "_runtime/", 任务结束删除
 - 不确定放哪: 问, 不猜
@@ -72,7 +72,7 @@
 ## 权限收敛
 
 - 读取权限: 所有磁盘。写/编辑权限: C 盘（仅限 `~/.claude/`、`~/.agentboard/`、`~/.scheduler/` 等已声明骨目录）、D 盘、F 盘。不碰系统保留区域（`C:\Windows`、`C:\Program Files`、`C:\ProgramData` 等系统目录）
-- **C 盘禁止落成果文件。** 成果文件（产出物、数据、项目文件）不落在 C 盘。不确定放哪时问用户。新项目天然落 `D:\workspace\lab\`，不落 C 盘
+- **C 盘禁止落成果文件。** 成果文件（产出物、数据、项目文件）不落在 C 盘。不确定放哪时问用户。新项目天然落 `D:\workspace\_lab\`，不落 C 盘
 - 工作目录隔离: cron job/agent 的读写范围在声明的项目目录内（`_runtime/`、`D:\workspace\`、`~/.agentboard/`、`~/.claude/`、`~/.openclaw/`）。不在项目目录外新建或修改文件
 - 一个任务一个目录: 不跨项目操作，不读无关项目文件
 - **落盘位置约定**:
@@ -94,7 +94,7 @@
 - 不硬编码: 密钥、URL、魔法数字走配置/环境变量, 不进逻辑代码
 - 高内聚低耦合: 模块只做一件事, 通过明确接口通信。三个一样的抽模式, 但职责边界清晰是前提
 - 禁止静默失败: 失败必须可见。静默比报错危险 — 报错有人修, 静默没人知道出事了
-- 治根因不治症状: 任何异常先追问"为什么现在出问题、之前不出"，再动手。排查系统状态（时序、网络、依赖是否就绪）优先于更换零件
+- 治根因不治症状: 分两层。①排查层：异常先追问"为什么现在出问题、之前不出"，再动手。②方案层：修的时候问"这个修法是只修了当前实例，还是修了整类问题"。只修实例 = 补丁，往上翻一层找通用注入点。检验标准：换了另一个任务/模板，同样的故障会复发吗？复发 = 没修到根因
 
 ## 验证循环
 **Why:** 模糊目标("让它能跑")驱动靠猜, 强成功标准驱动自循环。Karpathy: "Don't tell it what to do, give it success criteria and watch it go."
@@ -194,4 +194,4 @@
 巡检标准: `~/.inspector/projects-registry.json` — 本项目受 Inspector 巡检，检查项定义在 `inspection.json`
 
 ## 宪法自身红线
-本文件 ≤ 200 行。每次修订后检查行数，超过时报警要求精简。当前: 196 行 (2026-06-24)
+本文件 ≤ 200 行。每次修订后检查行数，超过时报警要求精简。当前: 197 行 (2026-06-26)
