@@ -86,7 +86,7 @@
 **路径验证**: 备份前检查目标路径存在。路径消失 → 报告走备用，不静默跳过。
 **触发时机**: 改配置文件后、关键节点（功能完成/session 结束/当天收尾）、需 `git push` 触发下游处。
 **仓库清单与恢复**: [repo-spec.md](%USERPROFILE%/.agentboard/repo-spec.md) §备份与恢复
-**会话备份**: [F:\claude-sessions\CLAUDE.md](F:\claude-sessions\CLAUDE.md)，触发：jsonl >200MB 或 0xffffffff 崩溃
+**会话备份**: [F:\warehouse\claude-sessions\CLAUDE.md](F:\warehouse\claude-sessions\CLAUDE.md)，触发：jsonl >200MB 或 0xffffffff 崩溃
 
 ## 工程纪律
 - 改完跑验证, 不只改不验
