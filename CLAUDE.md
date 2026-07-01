@@ -64,6 +64,7 @@
 - `~/.claude/` 白名单：CLAUDE.md、settings.json、settings.local.json、skills/、projects/、hooks/、cache/、file-history/、sessions/、shell-snapshots/、telemetry/、plans/、plugins/、backups/、_runtime/、dashboard/。除此之外不出现
 - 文件夹管理先行: 写文件前先建好目录结构, 任务再急不跳过
 - 临时文件放项目内 "_runtime/", 任务结束删除
+- 项目投料箱: 项目根目录可建 `inbox/`。用户拖入的文件 = 待处理投料，agent 在会话开始时检查 `inbox/` 并处理。文件名即描述
 - 不确定放哪: 问, 不猜
 - 新项目落盘: `D:\workspace\`。具体放根目录还是子目录，见 `D:\workspace\CLAUDE.md` 路由分层。禁止在 `_runtime/` 下建新项目
 - 渐进式披露: CLAUDE.md 只放原则和硬规则, 细节放外部文件按需引用, 不内联长文档。宪法内不列 skills/tools 清单 — 各自目录是唯一真相源
